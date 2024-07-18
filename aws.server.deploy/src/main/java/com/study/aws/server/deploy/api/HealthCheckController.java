@@ -10,7 +10,7 @@ public class HealthCheckController {
     @GetMapping("/health")
     public ResponseEntity<String> healthCheck() {
 
-        String message = "Health Check!" + "\n" + "요즘 감기 많이 걸린다고 하네. 모두들 건강하자";
+        String message = "Health Check!" + "<br>" + "요즘 감기 많이 걸린다고 하네. 모두들 건강하자";
         return ResponseEntity.ok(message);
     }
 }
