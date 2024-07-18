@@ -9,6 +9,8 @@ public class HealthCheckController {
 
     @GetMapping("/health")
     public ResponseEntity<String> healthCheck() {
-        return ResponseEntity.ok("이것이 Health Check 란다 애들아.");
+
+        String message = "Health Check!" + "\n" + "요즘 감기 많이 걸린다고 하네. 모두들 건강하자";
+        return ResponseEntity.ok(message);
     }
 }
