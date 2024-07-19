@@ -4,6 +4,7 @@ import java.util.List;
 import com.study.aws.server.deploy.friends.application.port.out.GetFriendOutPort;
 import com.study.aws.server.deploy.friends.application.port.out.SaveFriendOutPort;
 import com.study.aws.server.deploy.friends.domain.Friend;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,7 +46,7 @@ class FriendPersistenceTest {
         List<Friend> savedFriends = saveFriendOutPort.saveAll(friends);
 
         // then
-        System.out.println(savedFriends.size());
+        assertThat(savedFriends).hasSize(friends.size());
     }
 
 
@@ -56,10 +57,11 @@ class FriendPersistenceTest {
         String name = "naeun";
 
         // when
-        Friend friend = getFriendOutPort.getByName(name).get();
+        Friend friend = getFriendOutPort.getByName(name).orElseThrow();
 
         // then
-        System.out.println(friend.getExplanation());
+        assertThat(friend.getExplanation()).isEqualTo(
+                "소속: 주독주실 A 클래스 멤버<br>활동: 취업 활동 중<br>비고: 스스로 귀엽다고 말할 정도로 귀여움에 굉장한 자신감을 보임");
     }
 
 
