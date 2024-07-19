@@ -43,6 +43,6 @@ dependencies {
 }
 
 tasks.named('test') {
-	exclude 'com.study.aws.server.deploy.integration'
+	exclude '**/com/study/aws/server/deploy/integration/**'
 	useJUnitPlatform()
 }
