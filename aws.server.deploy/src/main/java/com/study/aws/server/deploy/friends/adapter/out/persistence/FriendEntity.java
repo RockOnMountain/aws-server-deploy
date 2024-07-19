@@ -1,6 +1,7 @@
 package com.study.aws.server.deploy.friends.adapter.out.persistence;
 
 import java.time.LocalDateTime;
+import com.study.aws.server.deploy.common.jpa.BaseTimeEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,15 +15,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "friends")
 @Entity
-class FriendEntity {
+class FriendEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String explanation;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
 
     @Builder
@@ -30,7 +29,5 @@ class FriendEntity {
         this.id = id;
         this.name = name;
         this.explanation = explanation;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 }

@@ -12,5 +12,5 @@ public class Friend {
     private String name;
     private String explanation;
     private LocalDateTime createdAt;
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 }

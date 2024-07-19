@@ -1,5 +1,6 @@
 package com.study.aws.server.deploy.friends.adapter.out.persistence;
 
+import java.util.List;
 import com.study.aws.server.deploy.friends.application.port.out.SaveFriendOutPort;
 import com.study.aws.server.deploy.friends.domain.Friend;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +25,23 @@ class FriendPersistenceAdapter implements SaveFriendOutPort {
     }
 
 
+    @Override
+    public List<Friend> saveAll(List<Friend> friends) {
+
+        List<FriendEntity> savedFriendEntities = friendRepository.saveAll(friendMapper.toEntities(friends));
+        return friendMapper.toDomains(savedFriendEntities);
+    }
+
+
     @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.ERROR)
     interface FriendMapper {
 
         FriendEntity toEntity(Friend domain);
 
+        List<FriendEntity> toEntities(List<Friend> domains);
+
         Friend toDomain(FriendEntity entity);
+
+        List<Friend> toDomains(List<FriendEntity> entities);
     }
 }
