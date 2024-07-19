@@ -1,6 +1,8 @@
 package com.study.aws.server.deploy.friends.adapter.out.persistence;
 
 import java.util.List;
+import java.util.Optional;
+import com.study.aws.server.deploy.friends.application.port.out.GetFriendOutPort;
 import com.study.aws.server.deploy.friends.application.port.out.SaveFriendOutPort;
 import com.study.aws.server.deploy.friends.domain.Friend;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-class FriendPersistenceAdapter implements SaveFriendOutPort {
+class FriendPersistenceAdapter implements SaveFriendOutPort, GetFriendOutPort {
 
     private final FriendRepository friendRepository;
     private final FriendMapper friendMapper;
@@ -30,6 +32,12 @@ class FriendPersistenceAdapter implements SaveFriendOutPort {
 
         List<FriendEntity> savedFriendEntities = friendRepository.saveAll(friendMapper.toEntities(friends));
         return friendMapper.toDomains(savedFriendEntities);
+    }
+
+
+    @Override
+    public Optional<Friend> getByName(String name) {
+        return friendRepository.findByName(name).map(friendMapper::toDomain);
     }
 
 
