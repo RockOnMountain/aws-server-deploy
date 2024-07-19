@@ -1,6 +1,7 @@
 package com.study.aws.server.deploy.integration;
 
 import java.util.List;
+import com.study.aws.server.deploy.friends.application.port.out.GetFriendOutPort;
 import com.study.aws.server.deploy.friends.application.port.out.SaveFriendOutPort;
 import com.study.aws.server.deploy.friends.domain.Friend;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,8 @@ class FriendPersistenceTest {
 
     @Autowired
     SaveFriendOutPort saveFriendOutPort;
+    @Autowired
+    GetFriendOutPort getFriendOutPort;
 
 
     @Test
@@ -42,7 +45,21 @@ class FriendPersistenceTest {
         List<Friend> savedFriends = saveFriendOutPort.saveAll(friends);
 
         // then
-        System.out.println(savedFriends);
+        System.out.println(savedFriends.size());
+    }
+
+
+    @Test
+    void getByName() {
+
+        // given
+        String name = "naeun";
+
+        // when
+        Friend friend = getFriendOutPort.getByName(name).get();
+
+        // then
+        System.out.println(friend.getExplanation());
     }
 
 
