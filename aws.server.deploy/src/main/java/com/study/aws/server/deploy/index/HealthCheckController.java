@@ -1,4 +1,4 @@
-package com.study.aws.server.deploy.api;
+package com.study.aws.server.deploy.index;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
