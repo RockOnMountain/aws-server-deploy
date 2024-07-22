@@ -18,6 +18,8 @@ class UploadImageService implements UploadImageUseCase {
 
     @Override
     public S3Image upload(MultipartFile multipartFile) {
-        return null;
+
+        S3Image s3Image = uploadImageOutPort.upload(multipartFile);
+        return saveS3ImageOutPort.save(s3Image);
     }
 }
