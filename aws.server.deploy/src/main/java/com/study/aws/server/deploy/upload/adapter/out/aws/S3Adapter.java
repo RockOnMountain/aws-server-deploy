@@ -38,7 +38,7 @@ class S3Adapter implements UploadImageOutPort {
 
             return S3Image.builder().url(amazonS3.getUrl(bucket, fileName).toString()).build();
         } catch(IOException e) {
-            return null;
+            throw new RuntimeException(e.getMessage());
         }
     }
 
