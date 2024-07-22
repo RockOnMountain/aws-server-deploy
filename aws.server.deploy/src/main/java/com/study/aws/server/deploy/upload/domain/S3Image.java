@@ -6,11 +6,10 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class UploadImage {
+public class S3Image {
 
     private Long id;
     private String url;
-    private String imageName;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

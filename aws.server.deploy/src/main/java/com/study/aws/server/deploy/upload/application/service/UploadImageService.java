@@ -1,0 +1,20 @@
+package com.study.aws.server.deploy.upload.application.service;
+
+import com.study.aws.server.deploy.upload.application.port.in.UploadImageUseCase;
+import com.study.aws.server.deploy.upload.application.port.out.UploadImageOutPort;
+import com.study.aws.server.deploy.upload.domain.S3Image;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+@RequiredArgsConstructor
+@Service
+class UploadImageService implements UploadImageUseCase {
+
+    private final UploadImageOutPort uploadImageOutPort;
+
+    @Override
+    public S3Image upload(MultipartFile multipartFile) {
+        return null;
+    }
+}
